@@ -1,0 +1,165 @@
+
+
+$n-char: 10;
+$char-w: 1ch;
+$gap: 1ch;
+$in-w: $n-char*($char-w + $gap);
+
+input {
+	// display: block;
+  margin-right: 40px;
+	margin: 2em auto;
+	border: none;
+	padding: 0;
+	// width: $in-w;
+	background: repeating-linear-gradient(90deg,
+		rgb(255, 255, 255) 0, rgb(255, 255, 255) $char-w,
+		transparent 0, transparent $char-w + $gap)
+		0 100%/ #{$in-w - $gap} 2px no-repeat;
+	font: 5ch droid sans mono, consolas, monospace;
+	letter-spacing: $gap;
+
+	&:focus {
+		outline: none;
+		color: rgb(0, 0, 0);
+	}
+}
+
+body{
+  background: url('/assets/images/bg-jeu.jpg');
+  background-size: cover;
+  min-height: 100vh;
+}
+
+
+img{
+  width: 700px;
+  height: 350px;
+
+}
+
+p{
+  color: white;
+}
+
+#img-row{
+background-color: none;
+}
+
+.container{
+  background:none;
+}
+
+#avatar1{
+  width:150px;
+  height:90px;
+}
+#avatar2{
+  width:90px;
+  height:90px;
+}
+
+#infos-joueur-container{
+  justify-content: right;
+}
+
+#nbDrapeauFait{
+  margin-bottom: 3%;
+  margin-top:5%;
+  text-align: center;
+}
+
+#validerReponse, #passerReponse{
+  margin-top: 50px;
+  text-align:center;
+}
+
+#passerReponse{
+  margin-left: 20px;
+}
+
+form{
+  text-align: center;
+}
+
+label{
+	font: 3ch droid sans mono, consolas, monospace;
+  color: white;
+  margin-right: 20px;;
+}
+
+button{
+  margin-bottom: 5%;
+  display: inline-block;
+}
+
+#row-timer{
+ display: flex!important;
+ float:left;
+
+}
+span{
+  margin-top:2%;
+  margin-left:20px;
+  color: rgb(251, 255, 0);
+  font-size:30px;
+  font-family: droid sans mono, consolas, monospace; ;
+}
+
+#tempsRestant{
+  margin-top:2%;
+  margin-left:20%;
+}
+
+h1{
+  margin-left:3%;
+}
+
+#score{
+  margin-left: 5%;
+  font-weight: bold;
+
+}
+
+.modal-header{
+  background:black;
+  border-bottom: none;
+    align-self: center;
+}
+
+.modal-content{
+  width: 1800px;
+  height:700px;
+  background: black;
+}
+
+#label-score-final, #scoreFinal, #label-score-final2, #scoreFinal2{
+  font-size: 65px;
+}
+
+#scoreFinal, #scoreFinal2{
+  margin-left: 35px;
+}
+
+#ReponseDrapeauDiv{
+  height: 50px;
+}
+#ReponseDrapeau1, #ReponseDrapeau2{
+
+  font-size: 25px;
+  font-weight: bold;
+  text-align :center;
+}
+
+#ReponseDrapeau1{
+  color: rgb(124, 176, 46)
+}
+
+#ReponseDrapeau2{
+  color: rgb(158, 3, 3)
+}
+
+a{
+  color: white;
+  text-decoration:none;
+}

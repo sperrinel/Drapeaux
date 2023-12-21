@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-8" id="row-timer">
+          <h3 id="tempsRestant">Temps restant :</h3>
+          <span>{{ tempsRestant }}</span>
+        </div>
+        <div
+          id="infos-joueur-container"
+          class="col-4 d-flex align-items-center"
+        >
+          <!-- <p class="m-0">{{ joueur.nom }}</p> -->
+          <img
+            *ngIf="joueur.nom === 'Intello'"
+            id="avatar1"
+            class="ml-2"
+            [src]="joueur.avatar"
+            alt="avatar"
+          />
+          <img
+            *ngIf="joueur.nom === 'Toto'"
+            id="avatar2"
+            class="ml-2"
+            [src]="joueur.avatar"
+            alt="avatar"
+          />
+          <h1 class="ml-4">Score :</h1>
+          <h2 style="color: yellow" id="score">{{ score }}</h2>
+        </div>
+      </div>
+      <div id="img-row" class="row d-flex justify-content-center">
+        <div id="ReponseDrapeauDiv">
+          <div
+            *ngIf="reponseDrapeau !== '' && bonneReponse == true"
+            class="alert alert-success"
+            role="alert"
+          >
+            <p id="ReponseDrapeau1">{{ reponseDrapeau }}</p>
+          </div>
+          <div
+            *ngIf="reponseDrapeau !== '' && bonneReponse == false"
+            class="alert alert-danger"
+            role="alert"
+          >
+            <p id="ReponseDrapeau2">{{ reponseDrapeau }}</p>
+          </div>
+        </div>
+        <h3 id="nbDrapeauFait">{{ nombreDeDrapeauxSurVingt }}/20</h3>
+        <img id="drapeau" [src]="drapeau.image" alt="drapeau" />
+
+        <!-- <p>{{ joueur.nom }}</p> -->
+      </div>
+      <div id="form-row" class="row">
+        <form (ngSubmit)="validerReponse()" #formulaire="ngForm">
+          <label for="reponse">Nom du pays :</label>
+          <input
+            type="text"
+            id="reponse"
+            name="reponse"
+            [(ngModel)]="reponseUtilisateur"
+            required
+          />
+          <button
+            class="btn btn-success"
+            type="submit"
+            [disabled]="!formulaire.valid"
+            id="validerReponse"
+          >
+            <h3>Valider</h3>
+          </button>
+          <button class="btn btn-light" type="submit" id="passerReponse">
+            <h3>Passer</h3>
+          </button>
+        </form>
+      </div>
+      <div class="row d-flex align-items-center"></div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header" style="background: rgb(0, 0, 0)">
+            <h5
+              class="modal-title"
+              id="staticBackdropLabel"
+              style="color: white !important"
+            >
+              <h2>Tutoriel</h2>
+            </h5>
+            <!-- <button
+              style="color: white !important"
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button> -->
+          </div>
+
+          <div
+            class="modal-body"
+            style="
+              background-image: url(/assets/images/modal.png);
+              background-size: cover;
+              background-position: center;
+              margin: 15px;
+            "
+          ></div>
+          <button
+            style="margin-bottom: 15px; margin-right: 25%; margin-left: 25%"
+            class="btn btn-success"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            (click)="lancementDuJeu()"
+          >
+            <h2>Dac !</h2>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="finDePartie"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticfinDePartie"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header" style="background: rgb(0, 0, 0)">
+            <h5
+              class="modal-title"
+              id="staticfinDePartie"
+              style="color: white !important"
+            >
+              <h2>Fin de partie</h2>
+            </h5>
+          </div>
+
+          <div class="modal-body" style="background-color: black">
+            <div class="row">
+              <div class="col-6"><h2>Partie actuelle</h2></div>
+              <div class="col-6"><h2>Meilleure partie</h2></div>
+            </div>
+            <div class="row">
+              <div class="col-6 d-flex align-items-center">
+                <h1 class="ml-4" id="label-score-final">Score :</h1>
+                <h2 style="color: yellow" id="scoreFinal">{{ score }}</h2>
+              </div>
+              <div class="col-6 d-flex align-items-center">
+                <h1 class="ml-4" id="label-score-final2">Score :</h1>
+                <h2 style="color: rgb(0, 119, 255)" id="scoreFinal2">
+                  {{ meilleurScore }}
+                </h2>
+              </div>
+            </div>
+          </div>
+          <button
+            style="margin-bottom: 15px; margin-right: 25%; margin-left: 25%"
+            class="btn btn-success"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            (click)="lancementDuJeu()"
+          >
+            <h2>Rejouer</h2>
+          </button>
+
+          <a href="/joueurs" style="align-self: center">
+            <button
+              style="
+                margin-bottom: 15px;
+                padding-left: 200px;
+                padding-right: 200px;
+              "
+              class="btn btn-primary"
+            >
+              <h2>Changer de joueur</h2>
+            </button></a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

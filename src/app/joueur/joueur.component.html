@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div *ngIf="toggleJouer == false" class="row">
+        <button class="btn btn-lg btn-light" (click)="jouer()">
+          <h1>Choisir mon personnage</h1>
+        </button>
+      </div>
+      <div *ngIf="toggleJouer == true" class="row">
+        <div class="col-6">
+          <div class="glassBox">
+            <div class="glassBox__imgBox">
+              <img
+                id="img-intello"
+                [src]="joueurs[0].avatar"
+                alt="avatar-joueur"
+                (click)="selectJoueur($event, 0)"
+              />
+            </div>
+            <h3 id="showIntello">j'prends l'intello !</h3>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="glassBox">
+            <div class="glassBox__imgBox">
+              <img
+                [src]="joueurs[1].avatar"
+                alt="avatar-joueur"
+                (click)="selectJoueur($event, 1)"
+              />
+            </div>
+            <h3 id="showToto">j'donne une chance au Toto !</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--
+    <div class="container">
+      <div class="row">
+        <div class="col col-6">
+          <img [src]="joueurs[0].avatar" alt="avatar-joueur" />
+          <p>{{ joueurs[0].nom }}</p>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="selectJoueur($event, 'intello')"
+          >
+            j'te choisis toi!
+          </button>
+        </div>
+        <div class="col col-6">
+          <img [src]="joueurs[1].avatar" alt="avatar-joueur" />
+          <p>{{ joueurs[1].nom }}</p>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="selectJoueur($event, 'toto')"
+          >
+            J'te choisis toi!
+          </button>
+        </div>
+      </div>
+    </div> -->
+  </body>
+</html>
